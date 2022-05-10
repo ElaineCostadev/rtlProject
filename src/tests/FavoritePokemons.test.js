@@ -17,7 +17,7 @@ describe('Testar o componente FavoritesPokemons', () => {
     expect(msgEl).toBeInTheDocument();
   });
 
-  it('Verifica se são exibidos todos os cards de pokemons favoritos', async () => {
+  it('Verifica se são exibidos todos os cards de pokemons favoritos', () => {
     // pagina principal Home
     const { history } = renderWithRouter(<App />);
     // peguei o link com os detalhes, verificando se está na tela
@@ -34,7 +34,7 @@ describe('Testar o componente FavoritesPokemons', () => {
     // clicar em Pokémon favoritado
     userEvent.click(checkboxEl);
     // verificar se foi incluido a estrelinha - find?
-    const imgStar = await screen.findByAltText(/Pikachu is marked as favorite/i);
+    const imgStar = screen.getByAltText(/Pikachu is marked as favorite/i);
     // verificar se está na tela
     expect(imgStar).toBeDefined();
     // verificar se o checkbox ficou true
