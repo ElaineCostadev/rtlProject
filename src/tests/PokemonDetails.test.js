@@ -9,8 +9,8 @@ const pathName = '/pokemons/25';
 describe('Verificar o componente Pokemon Details', () => {
   it('Verifique se as informações detalhadas do pokemon aparecem na tela', () => {
     const { history } = renderWithRouter(<App />);
-    history.push(pathName);
-    const linkdetails = screen.getByRole('link', { name: /More details/i });
+    // history.push(pathName);
+    const linkdetails = screen.queryByRole('link', { name: /More details/i });
     expect(linkdetails).toBeInTheDocument();
     userEvent.click(linkdetails);
     // fui para a pagina de detalhes do pokemon
