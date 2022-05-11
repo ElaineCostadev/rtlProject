@@ -27,7 +27,7 @@ describe('Teste o componente Pokedex', () => {
     const typePokemonEl = screen.getAllByText('Fire');
     expect(typePokemonEl[0]).toBeInTheDocument();
 
-    const weightPokemonEl = screen.getByTestId('pokemon-weight');
+    const weightPokemonEl = screen.getByText('Average weight: 8.5 kg');
     expect(weightPokemonEl).toHaveTextContent('Average weight: 8.5 kg');
     expect(weightPokemonEl).toBeInTheDocument();
 
@@ -37,7 +37,7 @@ describe('Teste o componente Pokedex', () => {
   });
   it('Teste se é mostrado apenas um pokémon por vez', () => {
     renderWithRouter(<App />);
-    const namePokemonEl = screen.queryByTestId('pokemon-name');
+    const namePokemonEl = screen.queryByText('Pikachu');
     expect(namePokemonEl.innerHTML).toBe('Pikachu');
     expect(namePokemonEl).toHaveTextContent('Pikachu');
     expect(namePokemonEl).toBeInTheDocument();
@@ -69,7 +69,7 @@ describe('Teste o componente Pokedex', () => {
     expect(buttonReset).toHaveTextContent('All');
 
     userEvent.click(buttonReset);
-    const namePokemonEl = screen.getByTestId('pokemon-name');
+    const namePokemonEl = screen.getByText('Pikachu');
     expect(namePokemonEl).toHaveTextContent('Pikachu');
     expect(namePokemonEl).toBeInTheDocument();
     // elemento pikachu
