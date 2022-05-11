@@ -28,6 +28,7 @@ describe('Teste o componente Pokedex', () => {
     expect(typePokemonEl[0]).toBeInTheDocument();
 
     const weightPokemonEl = screen.getByTestId('pokemon-weight');
+    expect(weightPokemonEl).toHaveTextContent('Average weight: 8.5 kg');
     expect(weightPokemonEl).toBeInTheDocument();
 
     // pego as informações do pokemon anterior para verificar se Não estao na tela
@@ -36,10 +37,11 @@ describe('Teste o componente Pokedex', () => {
   });
   it('Teste se é mostrado apenas um pokémon por vez', () => {
     renderWithRouter(<App />);
-    const namePokemonEl = screen.getByTestId('pokemon-name');
+    const namePokemonEl = screen.queryByTestId('pokemon-name');
+    expect(namePokemonEl.innerHTML).toBe('Pikachu');
+    expect(namePokemonEl).toHaveTextContent('Pikachu');
     expect(namePokemonEl).toBeInTheDocument();
     // elemento pikachu
-    expect(namePokemonEl.innerHTML).toBe('Pikachu');
     expect(namePokemonEl.innerHTML).not.toBe('Charmander');
   });
   it('Teste se a Pokédex tem os botões de filtro.', () => {
