@@ -57,6 +57,23 @@ describe('Teste o componente Pokedex', () => {
       const eachButton = screen.getByRole('button', { name: type });
       expect(eachButton).toBeInTheDocument();
     });
+    // clico em cada botao de type para verificar se os nomes dos pokemons sao renderizados corretamente
+    /*  const pokemonsNames = [
+      'Pikachu',
+      'Charmander',
+      'Caterpie',
+      'Ekans',
+      'Alakazam',
+      'Mew',
+      'Rapidash',
+      'Snorlax',
+      'Dragonair',
+    ];
+
+    pokemonsNames.forEach((pokemonName, index) => {
+      userEvent.click(eachButton[index]);
+      expect(queryByText(pokemonName)).toBeInTheDocument();
+    }); */
 
     const buttonAllPokemons = screen.getByRole('button', { name: 'All' });
     expect(buttonAllPokemons).toHaveTextContent('All');
