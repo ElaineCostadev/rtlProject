@@ -62,7 +62,7 @@ describe('Teste o componente Pokedex', () => {
   });
   it('Verifique se o pokemon é filtrado pelo tipo', () => {
     renderWithRouter(<App />);
-    // pego o botao do type que quero e o nome que espero
+    /*     // pego o botao do type que quero e o nome que espero
     const typeButtonFire = screen.getByRole('button', { name: /Fire/i });
     // clico
     userEvent.click(typeButtonFire);
@@ -92,7 +92,29 @@ describe('Teste o componente Pokedex', () => {
     const namePokemonEl3 = screen.getByText('Mew');
     expect(namePokemonEl3).toBeInTheDocument();
     expect(namePokemonEl3).toHaveTextContent('Mew');
-    expect(typeNamePokemonEl[0]).toBeInTheDocument();
+    expect(typeNamePokemonEl[0]).toBeInTheDocument(); */
+    // teste
+    const buttonType = screen.getAllByTestId('pokemon-type-button');
+    const eachPokemon = [
+      'Pikachu',
+      'Charmander',
+      'Caterpie',
+      'Ekans',
+      'Alakazam',
+      'Snorlax',
+      'Dragonair',
+    ];
+    eachPokemon.forEach((namePokemon, index) => {
+      userEvent.click(buttonType[index]);
+      expect(screen.queryByText(namePokemon)).toBeInTheDocument();
+    });
+    const types = [];
+    buttonType.forEach((type) => {
+      types.push(type.innerHTML);
+    });
+    types.forEach((type, index) => {
+      expect(buttonType[index].innerHTML).toBe(type);
+    });
   });
   it('Verifique se a Pokédex contém um botão para resetar o filtro', () => {
     renderWithRouter(<App />);
