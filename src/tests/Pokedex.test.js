@@ -49,6 +49,7 @@ describe('Teste o componente Pokedex', () => {
 
   it('Teste se a Pokédex tem os botões de filtro.', () => {
     const nine = 9;
+    // ajuda em mentoria
     const types = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
     renderWithRouter(<App />);
     const allbuttons = screen.getAllByRole('button');
@@ -66,39 +67,10 @@ describe('Teste o componente Pokedex', () => {
 
   it('Verifique se o pokemon é filtrado pelo tipo', () => {
     renderWithRouter(<App />);
-    /*     // pego o botao do type que quero e o nome que espero
-    const typeButtonFire = screen.getByRole('button', { name: /Fire/i });
-    // clico
-    userEvent.click(typeButtonFire);
-    // espero que renderiza o tipo Eletric e o nome Pikachu
-    const namePokemonEl = screen.getByText('Charmander');
-    expect(typeButtonFire).toHaveTextContent('Fire');
-    expect(namePokemonEl).toHaveTextContent('Charmander');
-
-    // pego o botao do type Psychic
-    const typeButtonPsychic = screen.getByRole('button', { name: /Psychic/i });
-    // clico no botao de type
-    userEvent.click(typeButtonPsychic);
-
-    // espero que renderiza o tipo Psychic e o nome Alakazam
-    const namePokemonEl2 = screen.getByText('Alakazam');
-    expect(namePokemonEl2).toBeInTheDocument();
-    expect(namePokemonEl2).toHaveTextContent('Alakazam');
-    const typeNamePokemonEl = screen.getAllByText('Psychic');
-    expect(typeNamePokemonEl[0]).toBeInTheDocument();
-
-    // pego o botao de proximo pokemon
-    const nextButton = screen.getByRole('button', { name: /próximo pokémon/i });
-    // clico em proximo
-    userEvent.click(nextButton);
-
-    // espero que renderiza o tipo Psychic e o nome Mew
-    const namePokemonEl3 = screen.getByText('Mew');
-    expect(namePokemonEl3).toBeInTheDocument();
-    expect(namePokemonEl3).toHaveTextContent('Mew');
-    expect(typeNamePokemonEl[0]).toBeInTheDocument(); */
-    // teste
+    // pego todos os botoes
     const buttonType = screen.getAllByTestId('pokemon-type-button');
+    // array de cada nome de pokemon
+    // ajuda em mentoria
     const eachPokemon = [
       'Pikachu',
       'Charmander',
@@ -108,15 +80,21 @@ describe('Teste o componente Pokedex', () => {
       'Snorlax',
       'Dragonair',
     ];
+    // pego o array de cada pokemon e seu index - passo por cada nome
     eachPokemon.forEach((namePokemon, index) => {
+      // clico no botao conforme o index - 0, 1, 2 ...
       userEvent.click(buttonType[index]);
+      // espero que o nome esteja no documento - uso o query para nao aparecer o erro, caso nao esteja no documento
       expect(screen.queryByText(namePokemon)).toBeInTheDocument();
     });
+    // faco um novo array colocando os tipos que foram encontrados
     const types = [];
     buttonType.forEach((type) => {
       types.push(type.innerHTML);
     });
+    // depois de criado o array com todos os botoes pego o tipo e o index
     types.forEach((type, index) => {
+      // botao do tipo [no index]. elemento - deve ser o mesmo tipo
       expect(buttonType[index].innerHTML).toBe(type);
     });
   });
