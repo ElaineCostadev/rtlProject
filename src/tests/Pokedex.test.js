@@ -11,6 +11,7 @@ describe('Teste o componente Pokedex', () => {
       { name: /Encountered pokémons/i, level: 2 });
     expect(titleEl).toBeInTheDocument();
   });
+
   it('Verifique se o proximo pokemon é exibido ao clicar em Próximo pokémon', () => {
     renderWithRouter(<App />);
     // pego o botao
@@ -35,6 +36,7 @@ describe('Teste o componente Pokedex', () => {
     const namePokemonEl1 = screen.queryByText('Pikachu');
     expect(namePokemonEl1).not.toBeInTheDocument();
   });
+
   it('Teste se é mostrado apenas um pokémon por vez', () => {
     renderWithRouter(<App />);
     const namePokemonEl = screen.queryByText('Pikachu');
@@ -44,6 +46,7 @@ describe('Teste o componente Pokedex', () => {
     // elemento pikachu
     expect(namePokemonEl.innerHTML).not.toBe('Charmander');
   });
+
   it('Teste se a Pokédex tem os botões de filtro.', () => {
     const nine = 9;
     const types = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
@@ -60,6 +63,7 @@ describe('Teste o componente Pokedex', () => {
     const buttonAllPokemons = screen.getByRole('button', { name: 'All' });
     expect(buttonAllPokemons).toHaveTextContent('All');
   });
+
   it('Verifique se o pokemon é filtrado pelo tipo', () => {
     renderWithRouter(<App />);
     /*     // pego o botao do type que quero e o nome que espero
@@ -116,6 +120,7 @@ describe('Teste o componente Pokedex', () => {
       expect(buttonType[index].innerHTML).toBe(type);
     });
   });
+
   it('Verifique se a Pokédex contém um botão para resetar o filtro', () => {
     renderWithRouter(<App />);
     const buttonReset = screen.getByRole('button', { name: 'All' });
